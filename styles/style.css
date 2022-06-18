@@ -118,7 +118,7 @@ input::placeholder {
 }
 
 .today_icon {
-  font-size: 70px;
+  width: 80px;
 }
 
 .today_first_value {

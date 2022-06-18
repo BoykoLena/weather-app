@@ -93,18 +93,62 @@ function actualTemperatureMin(temperature) {
   todayTempMin.innerHTML = Math.round(temperature);
 }
 
+function actialIcon(iconDescription) {
+  let actualIconImg = document.querySelector(".today_icon");
+
+  if (iconDescription === "Clear") {
+    actualIconImg.src = "icons/clear_sky.png";
+    actualIconImg.alt = "clear_sky";
+  }
+  if (iconDescription === "Clouds") {
+    actualIconImg.src = "icons/scattered_clouds.png";
+    actualIconImg.alt = "scattered_clouds";
+  }
+  if (iconDescription === "Rain") {
+    actualIconImg.src = "icons/shower_rain.png";
+    actualIconImg.alt = "shower_rain";
+  }
+  if (iconDescription === "Drizzle") {
+    actualIconImg.src = "icons/light_rain.png";
+    actualIconImg.alt = "light_rain";
+  }
+  if (iconDescription === "Thunderstorm") {
+    actualIconImg.src = "icons/thunderstorm.png";
+    actualIconImg.alt = "thunderstorm";
+  }
+  if (iconDescription === "Snow") {
+    actualIconImg.src = "icons/snow.png";
+    actualIconImg.alt = "snow";
+  }
+  if (
+    iconDescription === "Mist" ||
+    iconDescription === "Smoke" ||
+    iconDescription === "Haze" ||
+    iconDescription === "Dust" ||
+    iconDescription === "Fog" ||
+    iconDescription === "Sand" ||
+    iconDescription === "Ash" ||
+    iconDescription === "Squall" ||
+    iconDescription === "Tornado"
+  ) {
+    actualIconImg.src = "icons/mist.png";
+    actualIconImg.alt = "mist";
+  }
+}
+
 function showResponce(responce) {
   celsiusTransfer(event);
-  console.log(responce.data);
   let city = responce.data.name;
   let country = responce.data.sys.country;
   let temp = responce.data.main.temp;
   let tempMin = responce.data.main.temp_min;
+  let iconDescription = responce.data.weather[0].main;
 
   actualCity(city);
   actualCountry(country);
   actualTemperature(temp);
   actualTemperatureMin(tempMin);
+  actialIcon(iconDescription);
 }
 
 function actualDay(dayNumber) {
