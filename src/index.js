@@ -117,6 +117,7 @@ function actualDay(dayNumber) {
 
 function actualTime(hours, minutes) {
   let localTime = document.querySelector(".local_time");
+  let lastUpdated = document.querySelector("#lastUpdated");
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
@@ -124,6 +125,7 @@ function actualTime(hours, minutes) {
     hours = `0${hours}`;
   }
   localTime.innerHTML = `${hours}:${minutes}`;
+  lastUpdated.innerHTML = `${hours}:${minutes}`;
 }
 
 function actualData(date, monthNumber, year) {
