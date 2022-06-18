@@ -167,7 +167,7 @@ function actualTime() {
   localDay.innerHTML = nowDay;
   let localTime = document.querySelector(".local_time");
   if (nowMinutes < 10) {
-    nowMinutesminutes = `0${nowMinutes}`;
+    nowMinutes = `0${nowMinutes}`;
   }
   if (nowHours < 10) {
     nowHours = `0${nowHours}`;
