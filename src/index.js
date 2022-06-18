@@ -152,15 +152,32 @@ function showResponce(responce) {
 }
 
 function actualDay(dayNumber) {
-  let localDay = document.querySelector(".local_day");
   let today = document.querySelector("#today");
   let day = days[dayNumber];
-  localDay.innerHTML = day;
   today.innerHTML = day;
 }
 
-function actualTime(hours, minutes) {
+function actualTime() {
+  let nowDate = new Date();
+  let nowHours = nowDate.getHours();
+  let nowMinutes = nowDate.getMinutes();
+  let nowDayNumber = nowDate.getDay();
+  let localDay = document.querySelector(".local_day");
+  let nowDay = days[nowDayNumber];
+  localDay.innerHTML = nowDay;
   let localTime = document.querySelector(".local_time");
+  if (nowMinutes < 10) {
+    nowMinutesminutes = `0${nowMinutes}`;
+  }
+  if (nowHours < 10) {
+    nowHours = `0${nowHours}`;
+  }
+  localTime.innerHTML = `${nowHours}:${nowMinutes}`;
+}
+
+setInterval(actualTime, 1000);
+
+function lastUpdated(hours, minutes) {
   let lastUpdated = document.querySelector("#lastUpdated");
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -168,7 +185,6 @@ function actualTime(hours, minutes) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
-  localTime.innerHTML = `${hours}:${minutes}`;
   lastUpdated.innerHTML = `${hours}:${minutes}`;
 }
 
@@ -199,8 +215,8 @@ function requestData() {
   let monthNumber = nowDate.getMonth();
   let year = nowDate.getFullYear();
 
+  lastUpdated(hours, minutes);
   actualDay(dayNumber);
-  actualTime(hours, minutes);
   actualData(date, monthNumber, year);
   nextDay(dayNumber);
 }
