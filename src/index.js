@@ -120,6 +120,9 @@ function actualTime(hours, minutes) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   localTime.innerHTML = `${hours}:${minutes}`;
 }
 
