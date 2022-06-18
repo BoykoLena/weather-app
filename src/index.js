@@ -68,6 +68,7 @@ function celsiusTransfer(event) {
 celsiusTransferButton.addEventListener("click", celsiusTransfer);
 
 function request(cityRequest) {
+  requestData();
   let apiKey = "70d3ffa9a4880bd0019219a54fdf13d4";
   let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${cityRequest}&appid=${apiKey}&units=metric`;
   axios.get(urlApi).then(showResponce);
@@ -223,7 +224,6 @@ function requestData() {
 
 function byDefault() {
   request("Sydney");
-  requestData();
 }
 
 byDefault();
