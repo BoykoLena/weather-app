@@ -1,32 +1,3 @@
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-let temperatureValue = document.querySelectorAll(".temperature");
-let temperatureUnit = document.querySelectorAll(".unit");
-
-let fahrenheitTransferButton = document.querySelector("#fahrenheit_transfer");
 function fahrenheitTransfer(event) {
   event.preventDefault();
   if (fahrenheitTransferButton.classList.contains("transfer")) {
@@ -45,9 +16,7 @@ function fahrenheitTransfer(event) {
     }
   }
 }
-fahrenheitTransferButton.addEventListener("click", fahrenheitTransfer);
 
-let celsiusTransferButton = document.querySelector("#celsius_transfer");
 function celsiusTransfer(event) {
   event.preventDefault();
   if (celsiusTransferButton.classList.contains("transfer")) {
@@ -65,7 +34,6 @@ function celsiusTransfer(event) {
     }
   }
 }
-celsiusTransferButton.addEventListener("click", celsiusTransfer);
 
 function request(cityRequest) {
   requestData();
@@ -176,8 +144,6 @@ function actualTime() {
   localTime.innerHTML = `${nowHours}:${nowMinutes}`;
 }
 
-setInterval(actualTime, 1000);
-
 function lastUpdated(hours, minutes) {
   let lastUpdated = document.querySelector("#lastUpdated");
   if (minutes < 10) {
@@ -222,14 +188,6 @@ function requestData() {
   nextDay(dayNumber);
 }
 
-function byDefault() {
-  request("Sydney");
-}
-
-byDefault();
-
-let yourLocation = document.querySelector(".your_location a");
-
 function checkWeatherInYourLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
@@ -243,10 +201,6 @@ function showPosition(position) {
   axios.get(urlApi).then(showResponce);
 }
 
-yourLocation.addEventListener("click", checkWeatherInYourLocation);
-
-let searchCityForm = document.querySelector(".search_city_form");
-
 function searchCity(event) {
   event.preventDefault();
   let yourCityName = document.querySelector(".enter_your_city").value;
@@ -257,4 +211,47 @@ function searchCity(event) {
   }
 }
 
+function byDefault() {
+  request("Sydney");
+  actualTime();
+}
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+let temperatureValue = document.querySelectorAll(".temperature");
+let temperatureUnit = document.querySelectorAll(".unit");
+let fahrenheitTransferButton = document.querySelector("#fahrenheit_transfer");
+let celsiusTransferButton = document.querySelector("#celsius_transfer");
+let yourLocation = document.querySelector(".your_location a");
+let searchCityForm = document.querySelector(".search_city_form");
+
 searchCityForm.addEventListener("submit", searchCity);
+fahrenheitTransferButton.addEventListener("click", fahrenheitTransfer);
+celsiusTransferButton.addEventListener("click", celsiusTransfer);
+yourLocation.addEventListener("click", checkWeatherInYourLocation);
+
+setInterval(actualTime, 1000);
+byDefault();
