@@ -105,6 +105,15 @@ function actialIcon(iconDescription) {
   }
 }
 
+function actualWind(speed) {
+  let windSpeed = document.querySelector("#windSpeed");
+  windSpeed.innerHTML = `Wind speed: ${speed} km/h`;
+}
+
+function actualWeather(description) {
+  let weatherDescription = document.querySelector("#weatherDescription");
+  weatherDescription.innerHTML = `${description}`;
+}
 function showResponce(responce) {
   celsiusTransfer(event);
   let city = responce.data.name;
@@ -112,12 +121,16 @@ function showResponce(responce) {
   let temp = responce.data.main.temp;
   let tempMin = responce.data.main.temp_min;
   let iconDescription = responce.data.weather[0].main;
+  let windSpeed = responce.data.wind.speed;
+  let weatherDescription = responce.data.weather[0].description;
 
   actualCity(city);
   actualCountry(country);
   actualTemperature(temp);
   actualTemperatureMin(tempMin);
   actialIcon(iconDescription);
+  actualWind(windSpeed);
+  actualWeather(weatherDescription);
 }
 
 function actualDay(dayNumber) {

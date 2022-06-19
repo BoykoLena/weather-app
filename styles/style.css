@@ -130,6 +130,10 @@ input::placeholder {
   margin-left: 10px;
 }
 
+.more_information {
+  font-size: 14px;
+}
+
 .next_day_name,
 .next_day_first_value {
   font-size: 20px;
