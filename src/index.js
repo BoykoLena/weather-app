@@ -105,15 +105,80 @@ function actialIcon(iconDescription) {
   }
 }
 
-function actualWind(speed) {
-  let windSpeed = document.querySelector("#windSpeed");
-  windSpeed.innerHTML = `Wind speed: ${speed} km/h`;
-}
+// function actualWind(speed) {
+//   let windSpeed = document.querySelector("#windSpeed");
+//   windSpeed.innerHTML = `Wind speed: ${speed} km/h`;
+// }
 
 function actualWeather(description) {
   let weatherDescription = document.querySelector("#weatherDescription");
   weatherDescription.innerHTML = `${description}`;
 }
+
+function nextDayShowResponce(responce) {
+  let nextTemperatureMax = document.querySelectorAll(".next_temperature_max");
+  for (let i = 0; i < nextTemperatureMax.length; i++) {
+    nextTemperatureMax[i].innerHTML = Math.round(
+      responce.data.daily[i].temp.max
+    );
+  }
+
+  let nextTemperatureMin = document.querySelectorAll(".next_temperature_min");
+  for (let i = 0; i < nextTemperatureMin.length; i++) {
+    nextTemperatureMin[i].innerHTML = Math.round(
+      responce.data.daily[i].temp.min
+    );
+  }
+
+  let nextDayIcon = document.querySelectorAll(".next_day_icon");
+  for (let i = 0; i < nextDayIcon.length; i++) {
+    if (responce.data.daily[i].weather[0].main === "Clear") {
+      nextDayIcon[i].src = "icons/clear_sky.png";
+      nextDayIcon[i].alt = "clear_sky";
+    }
+    if (responce.data.daily[i].weather[0].main === "Clouds") {
+      nextDayIcon[i].src = "icons/scattered_clouds.png";
+      nextDayIcon[i].alt = "scattered_clouds";
+    }
+    if (responce.data.daily[i].weather[0].main === "Rain") {
+      nextDayIcon[i].src = "icons/shower_rain.png";
+      nextDayIcon[i].alt = "shower_rain";
+    }
+    if (responce.data.daily[i].weather[0].main === "Drizzle") {
+      nextDayIcon[i].src = "icons/light_rain.png";
+      nextDayIcon[i].alt = "light_rain";
+    }
+    if (responce.data.daily[i].weather[0].main === "Thunderstorm") {
+      nextDayIcon[i].src = "icons/thunderstorm.png";
+      nextDayIcon[i].alt = "thunderstorm";
+    }
+    if (responce.data.daily[i].weather[0].main === "Snow") {
+      nextDayIcon[i].src = "icons/snow.png";
+      nextDayIcon[i].alt = "snow";
+    }
+    if (
+      responce.data.daily[i].weather[0].main === "Mist" ||
+      responce.data.daily[i].weather[0].main === "Smoke" ||
+      responce.data.daily[i].weather[0].main === "Haze" ||
+      responce.data.daily[i].weather[0].main === "Dust" ||
+      responce.data.daily[i].weather[0].main === "Fog" ||
+      responce.data.daily[i].weather[0].main === "Sand" ||
+      responce.data.daily[i].weather[0].main === "Ash" ||
+      responce.data.daily[i].weather[0].main === "Squall" ||
+      responce.data.daily[i].weather[0].main === "Tornado"
+    ) {
+      nextDayIcon[i].src = "icons/mist.png";
+      nextDayIcon[i].alt = "mist";
+    }
+  }
+}
+
+function nextDayWeatherResponce(lat, lon) {
+  let apiKey = "70d3ffa9a4880bd0019219a54fdf13d4";
+  let urlApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(urlApi).then(nextDayShowResponce);
+}
+
 function showResponce(responce) {
   celsiusTransfer(event);
   let city = responce.data.name;
@@ -123,14 +188,17 @@ function showResponce(responce) {
   let iconDescription = responce.data.weather[0].main;
   let windSpeed = responce.data.wind.speed;
   let weatherDescription = responce.data.weather[0].description;
+  let lat = responce.data.coord.lat;
+  let lon = responce.data.coord.lon;
 
   actualCity(city);
   actualCountry(country);
   actualTemperature(temp);
   actualTemperatureMin(tempMin);
   actialIcon(iconDescription);
-  actualWind(windSpeed);
+  // actualWind(windSpeed);
   actualWeather(weatherDescription);
+  nextDayWeatherResponce(lat, lon);
 }
 
 function actualDay(dayNumber) {
