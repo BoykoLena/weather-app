@@ -294,7 +294,6 @@ function searchCity(event) {
 
 function byDefault() {
   request("Sydney");
-  actualTime();
 }
 
 let days = [
@@ -334,5 +333,5 @@ fahrenheitTransferButton.addEventListener("click", fahrenheitTransfer);
 celsiusTransferButton.addEventListener("click", celsiusTransfer);
 yourLocation.addEventListener("click", checkWeatherInYourLocation);
 
-setInterval(actualTime, 1000);
+setInterval(actualTime);
 byDefault();
