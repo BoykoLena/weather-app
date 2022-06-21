@@ -57,10 +57,10 @@ function actualTemperature(temperature) {
   todayTemp.innerHTML = Math.round(temperature);
 }
 
-function actualTemperatureMin(temperature) {
-  let todayTempMin = document.querySelector(".today_second_value span");
-  todayTempMin.innerHTML = Math.round(temperature);
-}
+// function actualTemperatureMin(temperature) {
+//   let todayTempMin = document.querySelector(".today_second_value span");
+//   todayTempMin.innerHTML = Math.round(temperature);
+// }
 
 function actialIcon(iconDescription) {
   let actualIconImg = document.querySelector(".today_icon");
@@ -194,7 +194,7 @@ function showResponce(responce) {
   actualCity(city);
   actualCountry(country);
   actualTemperature(temp);
-  actualTemperatureMin(tempMin);
+  // actualTemperatureMin(tempMin);
   actialIcon(iconDescription);
   // actualWind(windSpeed);
   actualWeather(weatherDescription);
